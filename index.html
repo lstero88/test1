@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Example</title>
+</head>
+<body>
+
+	<b>	
+	asdfdasfdasfdasasfsdf
+	</b>
+	
+	<br>
+	<br>
+	
+	<input type="text" id="theText">
+	<button onClick='fetchData()'>Send</button>
+	
+	
+	<br/><br/><br/>
+	
+    <div id="ajax-data"></div>
+    <script>
+        const ajaxData = document.getElementById('ajax-data');
+
+		let data = "";
+		 
+		
+ 
+        function fetchData() {
+		
+ 
+				
+		let param2 = document.getElementById('theText').value;
+		
+ 
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/data?param1=Luke&param2=${param2}`, true);
+			
+ 
+			
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+				
+					data = data  + xhr.responseText;
+                    ajaxData.innerHTML = `Server says: ${data}`;
+                   // setTimeout(fetchData, 2000); // Poll every 2 seconds
+                }
+            };
+
+            xhr.send();
+        }
+
+       // fetchData(); // Initial request
+    </script>
+	
+	
+ 
+	
+	
+	
+ 
+</body>
+</html>
